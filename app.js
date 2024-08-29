@@ -18,7 +18,7 @@ const initMySQL = async () => {
     });
 };
 
-// Use sequenlize 
+// Passing parameters separately (other dialects)
 // dialect: /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 
 //*************************************************************************************************

@@ -143,6 +143,14 @@ docker stop appdev-mysql
 - persist data (using volume)
 docker run --name appdev-mysql --rm -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=appdev -v D:\Docker\mysql:/var/lib/mysql mysql
 
+***********************************************************************************************************************************************************************************
+phpMyAdmin
+***********************************************************************************************************************************************************************************
+- pull docker image
+docker pull phpmyadmin/phpmyadmin
+
+- run phpMyAdmin on docker
+docker run --rm --name appdev-phpmyadmin -d --link appdev-mysql:db -p 8081:80 phpmyadmin/phpmyadmin                                                                              
 
 ***********************************************************************************************************************************************************************************
 Microsoft SQL Server - Ubuntu based images
@@ -156,3 +164,5 @@ docker run --rm --name appdev-mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Sup
 docker run --rm --name appdev-mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Superman@2024' -p 1433:1433 -v D:\Docker\mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
 
 docker exec -it appdev-mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Superman@2024
+
+
