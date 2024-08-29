@@ -1,8 +1,9 @@
+https://sequelize.org/
+
 docker-compose up -d
 # npm install --save mysql2
 # npm install --save sequelize
 # npm install --save pg pg-hstore # Postgres
-# npm install --save mysql2
 # npm install express
 # npm install cors
 # npm install jsonwebtoken
@@ -10,6 +11,16 @@ docker-compose up -d
 # npm install cookie-parser
 # npm install dotenv --save
 # npm install --save-dev nodemon
+
+# npm i @sequelize/mssql # SQL Server
+
+# One of the following:
+$ npm install --save pg pg-hstore # Postgres
+$ npm install --save mysql2
+$ npm install --save mariadb
+$ npm install --save sqlite3
+$ npm install --save tedious # Microsoft SQL Server
+$ npm install --save oracledb # Oracle Database
 
 ***********************************************************************************************************************************************************************************
 postgres
@@ -131,3 +142,17 @@ docker stop appdev-mysql
 
 - persist data (using volume)
 docker run --name appdev-mysql --rm -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=appdev -v D:\Docker\mysql:/var/lib/mysql mysql
+
+
+***********************************************************************************************************************************************************************************
+Microsoft SQL Server - Ubuntu based images
+***********************************************************************************************************************************************************************************
+- pull docker image
+docker pull mcr.microsoft.com/mssql/server
+
+docker run --rm --name appdev-mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Superman@2024'  -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+- persist data (using volume)
+docker run --rm --name appdev-mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Superman@2024' -p 1433:1433 -v D:\Docker\mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+docker exec -it appdev-mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Superman@2024

@@ -7,9 +7,8 @@ const { Sequelize, DataTypes } = require("sequelize");
 const app = express();
 app.use(express.json());
 
-let conn = null;
-
 // function init connection mysql
+let conn = null;
 const initMySQL = async () => {
     conn = await mysql.createConnection({
         host: "localhost",
@@ -19,15 +18,24 @@ const initMySQL = async () => {
     });
 };
 
-// use sequenlize
-// let database = "appdev";
-// let username = "root";
-// let password = "appdev";
-// const sequelize = new Sequelize(database, username, password, {
-//     host: "localhost",
-//     dialect: "mysql",    
-// });
+// Use sequenlize 
+// dialect: /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 
+//*************************************************************************************************
+// mysql 
+//*************************************************************************************************
+let database = "appdev";
+let username = "root";
+let password = "appdev";
+const sequelize = new Sequelize(database, username, password, {
+    host: "localhost",
+    dialect: "mysql",    
+});
+
+//*************************************************************************************************
+// postgres
+//*************************************************************************************************
+/*
 let database = "appdev";
 let username = "appdev";
 let password = "appdev";
@@ -35,7 +43,20 @@ const sequelize = new Sequelize(database, username, password, {
     host: "localhost",
     dialect: "postgres",    
 });
+*/
 
+//*************************************************************************************************
+// mssql
+//*************************************************************************************************
+/*
+let database = "TEST.FREEZONE";
+let username = "CBI";
+let password = "MLae7y7Ge1WO";
+const sequelize = new Sequelize(database, username, password, {
+    host: "192.168.10.2",
+    dialect: "mssql",    
+});
+*/
 
 const User = sequelize.define(
     "users",
@@ -149,7 +170,7 @@ app.put("/api/users/:id", async (req, res) => {
         const data = req.body;
         const userId = req.params.id;
         // แบบ Query แบบเก่า
-        //  const result = await conn.query('UPDATE users SET ? WHERE id = ?', [data, id])
+        // const result = await conn.query('UPDATE users SET ? WHERE id = ?', [data, id])
 
         // ท่า Model
         const users = await User.update(
