@@ -58,6 +58,18 @@ const sequelize = new Sequelize(database, username, password, {
 });
 */
 
+/*
+-----------------------------                                    -----------------------------
+| user                      |      one to many relationship      | address                   |
++---------+--------+--------+                                    -----------------------------
+| id      | int    | PK     |                                    | id      | int    | PK     |
++---------+--------+--------+                                    +---------+--------+--------+
+| name    | string |        |                                    | userId  | int    | FK     |
++---------+--------+--------+                                    +---------+--------+--------+
+| email   | string |        |                                    | address1| string |        |
++---------+--------+--------+                                    +---------+--------+--------+
+*/
+
 const User = sequelize.define(
     "users",
     {
@@ -95,8 +107,6 @@ const Address = sequelize.define(
 User.hasMany(Address, { onDelete: "CASCADE" });
 
 Address.belongsTo(User);
-
-
 
 
 app.get("/api/users", async (req, res) => {

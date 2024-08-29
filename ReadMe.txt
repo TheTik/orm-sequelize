@@ -150,7 +150,7 @@ phpMyAdmin
 docker pull phpmyadmin/phpmyadmin
 
 - run phpMyAdmin on docker
-docker run --rm --name appdev-phpmyadmin -d --link appdev-mysql:db -p 8081:80 phpmyadmin/phpmyadmin                                                                              
+docker run --rm --name appdev-phpmyadmin -d --link appdev-mysql:db -p 8085:80 phpmyadmin/phpmyadmin                                                                              
 
 ***********************************************************************************************************************************************************************************
 Microsoft SQL Server - Ubuntu based images
